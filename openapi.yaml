@@ -722,7 +722,6 @@ components:
         - status
         - error
         - message
-        - path
       properties:
         timestamp:
           type: string
