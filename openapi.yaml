@@ -1,0 +1,757 @@
+openapi: 3.2.0
+info:
+  title: Product Catalog Management API
+  description: A simple REST API for a product catalog management system.
+  version: "1"
+
+servers:
+  - url: http://localhost:8888/api/v1
+    description: local development server
+
+tags:
+  - name: Products
+  - name: Producers
+
+paths:
+  /products:
+    get:
+      tags:
+        - Products
+      summary: List all products
+      description: Retrieve all products with optional filtering
+      parameters:
+        - name: producerId
+          in: query
+          description: Filter products by producer ID
+          required: false
+          schema:
+            type: string
+            format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440001"
+        - name: producerName
+          in: query
+          description: Filter products by producer name (partial match)
+          required: false
+          schema:
+            type: string
+          example: "Generic Producer"
+        - name: productName
+          in: query
+          description: Filter products by product name (partial match)
+          required: false
+          schema:
+            type: string
+          example: "Generic Product"
+        - name: minPrice
+          in: query
+          description: Filter products with price greater than or equal to this value
+          required: false
+          schema:
+            type: number
+            format: double
+          example: 100.00
+        - name: maxPrice
+          in: query
+          description: Filter products with price less than or equal to this value
+          required: false
+          schema:
+            type: number
+            format: double
+          example: 1000.00
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+          example: 0
+        - name: size
+          in: query
+          description: Page size
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+          example: 20
+        - name: sort
+          in: query
+          description: Sort criteria (format - property,direction)
+          required: false
+          schema:
+            type: string
+          example: name,asc
+      responses:
+        '200':
+          description: Successfully retrieved products
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductPageResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    post:
+      tags:
+        - Products
+      summary: Create a new product
+      description: Add a new product to the catalog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProductRequest'
+      responses:
+        '201':
+          description: Product successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+        '400':
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Producer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /products/{id}:
+    get:
+      tags:
+        - Products
+      summary: Get product by ID
+      description: Retrieve detailed information about a specific product
+      parameters:
+        - name: id
+          in: path
+          description: Product ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440002"
+      responses:
+        '200':
+          description: Successfully retrieved product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+        '404':
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      tags:
+        - Products
+      summary: Update product
+      description: Update an existing product information and attributes
+      parameters:
+        - name: id
+          in: path
+          description: Product ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440002"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProductRequest'
+      responses:
+        '200':
+          description: Product successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+        '400':
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Product or Producer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      tags:
+        - Products
+      summary: Delete product
+      description: Remove a product from the catalog
+      parameters:
+        - name: id
+          in: path
+          description: Product ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440002"
+      responses:
+        '200':
+          description: Product successfully deleted
+        '404':
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /producers:
+    get:
+      tags:
+        - Producers
+      summary: List all producers
+      description: Retrieve all producers
+      parameters:
+        - name: name
+          in: query
+          description: Filter producers by name (partial match)
+          required: false
+          schema:
+            type: string
+          example: "Generic Producer"
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+          example: 0
+        - name: size
+          in: query
+          description: Page size
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+          example: 20
+        - name: sort
+          in: query
+          description: Sort criteria (format - property,direction)
+          required: false
+          schema:
+            type: string
+          example: name,asc
+      responses:
+        '200':
+          description: Successfully retrieved producers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProducerPageResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    post:
+      tags:
+        - Producers
+      summary: Create a new producer
+      description: Add a new producer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProducerRequest'
+      responses:
+        '201':
+          description: Producer successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProducerResponse'
+        '400':
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /producers/{id}:
+    get:
+      tags:
+        - Producers
+      summary: Get producer by ID
+      description: Retrieve detailed information about a specific producer
+      parameters:
+        - name: id
+          in: path
+          description: Producer ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440001"
+      responses:
+        '200':
+          description: Successfully retrieved producer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProducerResponse'
+        '404':
+          description: Producer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    
+    put:
+      tags:
+        - Producers
+      summary: Update producer
+      description: Update an existing producer information
+      parameters:
+        - name: id
+          in: path
+          description: Producer ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440001"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProducerRequest'
+      responses:
+        '200':
+          description: Producer successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProducerResponse'
+        '400':
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Producer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      tags:
+        - Producers
+      summary: Delete producer
+      description: Remove a producer
+      parameters:
+        - name: id
+          in: path
+          description: Producer ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440001"
+      responses:
+        '200':
+          description: Producer successfully deleted
+        '404':
+          description: Producer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Cannot delete producer with existing products
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /producers/{id}/products:
+    get:
+      tags:
+        - Producers
+      summary: Get all products for a producer
+      description: Retrieve all products belonging to a specific producer
+      parameters:
+        - name: id
+          in: path
+          description: Producer ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440001"
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+        - name: size
+          in: query
+          description: Page size
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+      responses:
+        '200':
+          description: Successfully retrieved products
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductPageResponse'
+        '404':
+          description: Producer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:    
+    ProductResponse:
+      type: object
+      description: Complete product information
+      required:
+        - id
+        - name
+        - description
+        - price
+        - producer
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique product identifier
+          example: "550e8400-e29b-41d4-a716-446655440002"
+        name:
+          type: string
+          description: Product name
+          example: "Generic Product"
+        description:
+          type: string
+          description: Product description
+          example: "A generic product description"
+        price:
+          type: number
+          format: double
+          description: Product price
+          minimum: 0
+          example: 99.99
+        producer:
+          $ref: '#/components/schemas/ProducerSummary'
+        attributes:
+          type: object
+          description: Dynamic key-value pairs for product attributes
+          additionalProperties:
+            type: string
+          example:
+            color: "Black"
+            weight: "1.5 kg"
+            dimensions: "10x20x30 cm"
+        createdAt:
+          type: string
+          format: date-time
+          description: Product creation timestamp
+          example: "2024-01-15T10:30:00Z"
+        updatedAt:
+          type: string
+          format: date-time
+          description: Product last update timestamp
+          example: "2024-01-20T14:45:00Z"
+
+    CreateProductRequest:
+      type: object
+      description: Request payload for creating a new product
+      required:
+        - name
+        - description
+        - price
+        - producerId
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Product name
+          example: "Generic Product"
+        description:
+          type: string
+          minLength: 1
+          maxLength: 2000
+          description: Product description
+          example: "A generic product description"
+        price:
+          type: number
+          format: double
+          minimum: 0
+          description: Product price
+          example: 99.99
+        producerId:
+          type: string
+          format: uuid
+          description: ID of the producer
+          example: "550e8400-e29b-41d4-a716-446655440001"
+        attributes:
+          type: object
+          description: Dynamic key-value pairs for product attributes
+          additionalProperties:
+            type: string
+          example:
+            color: "Black"
+            weight: "1.5 kg"
+
+    UpdateProductRequest:
+      type: object
+      description: Request payload for updating a product
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Product name
+          example: "Updated Generic Product"
+        description:
+          type: string
+          minLength: 1
+          maxLength: 2000
+          description: Product description
+          example: "Updated description"
+        price:
+          type: number
+          format: double
+          minimum: 0
+          description: Product price
+          example: 89.99
+        producerId:
+          type: string
+          format: uuid
+          description: ID of the producer
+          example: "550e8400-e29b-41d4-a716-446655440001"
+        attributes:
+          type: object
+          description: Dynamic key-value pairs for product attributes (replaces all existing attributes)
+          additionalProperties:
+            type: string
+          example:
+            color: "White"
+            weight: "1.6 kg"
+
+    ProductPageResponse:
+      type: object
+      description: Paginated list of products
+      required:
+        - content
+        - page
+        - size
+        - totalElements
+        - totalPages
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductResponse'
+          description: List of products
+        page:
+          type: integer
+          description: Current page number (zero-based)
+          example: 0
+        size:
+          type: integer
+          description: Page size
+          example: 20
+        totalElements:
+          type: integer
+          format: int64
+          description: Total number of products
+          example: 150
+        totalPages:
+          type: integer
+          description: Total number of pages
+          example: 8
+    
+    ProducerResponse:
+      type: object
+      description: Complete producer information
+      required:
+        - id
+        - name
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique producer identifier
+          example: "550e8400-e29b-41d4-a716-446655440001"
+        name:
+          type: string
+          description: Producer name
+          example: "Generic Producer"
+        description:
+          type: string
+          description: Producer description
+          example: "A generic producer description"
+        createdAt:
+          type: string
+          format: date-time
+          description: Producer creation timestamp
+          example: "2024-01-01T00:00:00Z"
+        updatedAt:
+          type: string
+          format: date-time
+          description: Producer last update timestamp
+          example: "2024-01-15T10:30:00Z"
+
+    ProducerSummary:
+      type: object
+      description: Summary information about a producer (used in product responses)
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Producer ID
+          example: "550e8400-e29b-41d4-a716-446655440001"
+        name:
+          type: string
+          description: Producer name
+          example: "Generic Producer"
+
+    CreateProducerRequest:
+      type: object
+      description: Request payload for creating a new producer
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Producer name
+          example: "Generic Producer"
+        description:
+          type: string
+          maxLength: 2000
+          description: Producer description
+          example: "A generic producer description"
+
+    UpdateProducerRequest:
+      type: object
+      description: Request payload for updating a producer
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Producer name
+          example: "Updated Generic Producer"
+        description:
+          type: string
+          maxLength: 2000
+          description: Producer description
+          example: "Updated description"
+
+    ProducerPageResponse:
+      type: object
+      description: Paginated list of producers
+      required:
+        - content
+        - page
+        - size
+        - totalElements
+        - totalPages
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProducerResponse'
+          description: List of producers
+        page:
+          type: integer
+          description: Current page number (zero-based)
+          example: 0
+        size:
+          type: integer
+          description: Page size
+          example: 20
+        totalElements:
+          type: integer
+          format: int64
+          description: Total number of producers
+          example: 100
+        totalPages:
+          type: integer
+          description: Total number of pages
+          example: 5
+    
+    ErrorResponse:
+      type: object
+      description: Error response
+      required:
+        - timestamp
+        - status
+        - error
+        - message
+        - path
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: Error timestamp
+          example: "2024-01-15T10:30:00Z"
+        status:
+          type: integer
+          description: HTTP status code
+          example: 400
+        error:
+          type: string
+          description: Error type
+          example: "Bad Request"
+        message:
+          type: string
+          description: Error message
+          example: "Invalid sort format: expected 'property,direction'"
