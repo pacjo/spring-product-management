@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: cloudfide-task
+
+  datasource:
+    url: jdbc:h2:mem:db
+    driver-class-name: org.h2.Driver
+    # of course nothing production ready, but security isn't the goal here
+    username: username
+    password: password
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    enabled: true
+
+server:
+  port: 8888
+  servlet:
+    context-path: /
