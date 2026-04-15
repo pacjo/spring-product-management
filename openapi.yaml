@@ -447,7 +447,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 
 components:
-  schemas:    
+  schemas:
     ProductResponse:
       type: object
       description: Complete product information
@@ -456,7 +456,7 @@ components:
         - name
         - description
         - price
-        - producer
+        - producerId
         - createdAt
         - updatedAt
       properties:
@@ -479,8 +479,11 @@ components:
           description: Product price
           minimum: 0
           example: 99.99
-        producer:
-          $ref: '#/components/schemas/ProducerSummary'
+        producerId:
+          type: string
+          format: uuid
+          description: Producer ID
+          example: "550e8400-e29b-41d4-a716-446655440001"
         attributes:
           type: object
           description: Dynamic key-value pairs for product attributes
@@ -643,23 +646,6 @@ components:
           format: date-time
           description: Producer last update timestamp
           example: "2024-01-15T10:30:00Z"
-
-    ProducerSummary:
-      type: object
-      description: Summary information about a producer (used in product responses)
-      required:
-        - id
-        - name
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: Producer ID
-          example: "550e8400-e29b-41d4-a716-446655440001"
-        name:
-          type: string
-          description: Producer name
-          example: "Generic Producer"
 
     CreateProducerRequest:
       type: object
