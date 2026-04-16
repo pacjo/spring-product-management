@@ -1,0 +1,705 @@
+# ai generated
+databaseChangeLog:
+  - changeSet:
+      id: 004-insert-sample-data
+      author: system
+      changes:
+        - insert:
+            tableName: producers
+            columns:
+              - column:
+                  name: id
+                  value: '550e8400-e29b-41d4-a716-446655440001'
+              - column:
+                  name: name
+                  value: 'Samsung'
+              - column:
+                  name: description
+                  value: 'Global electronics manufacturer'
+              - column:
+                  name: created_at
+                  valueDate: '2024-01-01T00:00:00'
+              - column:
+                  name: updated_at
+                  valueDate: '2024-01-01T00:00:00'
+
+        - insert:
+            tableName: producers
+            columns:
+              - column:
+                  name: id
+                  value: '550e8400-e29b-41d4-a716-446655440002'
+              - column:
+                  name: name
+                  value: 'Apple'
+              - column:
+                  name: description
+                  value: 'Technology company specializing in consumer electronics'
+              - column:
+                  name: created_at
+                  valueDate: '2024-01-01T00:00:00'
+              - column:
+                  name: updated_at
+                  valueDate: '2024-01-01T00:00:00'
+
+        - insert:
+            tableName: producers
+            columns:
+              - column:
+                  name: id
+                  value: '550e8400-e29b-41d4-a716-446655440003'
+              - column:
+                  name: name
+                  value: 'Sony'
+              - column:
+                  name: description
+                  value: 'Multinational conglomerate corporation'
+              - column:
+                  name: created_at
+                  valueDate: '2024-01-01T00:00:00'
+              - column:
+                  name: updated_at
+                  valueDate: '2024-01-01T00:00:00'
+
+        - insert:
+            tableName: producers
+            columns:
+              - column:
+                  name: id
+                  value: '550e8400-e29b-41d4-a716-446655440004'
+              - column:
+                  name: name
+                  value: 'LG'
+              - column:
+                  name: description
+                  value: 'Consumer electronics and home appliances'
+              - column:
+                  name: created_at
+                  valueDate: '2024-01-01T00:00:00'
+              - column:
+                  name: updated_at
+                  valueDate: '2024-01-01T00:00:00'
+
+        - insert:
+            tableName: producers
+            columns:
+              - column:
+                  name: id
+                  value: '550e8400-e29b-41d4-a716-446655440005'
+              - column:
+                  name: name
+                  value: 'Dell'
+              - column:
+                  name: description
+                  value: 'Computer technology company'
+              - column:
+                  name: created_at
+                  valueDate: '2024-01-01T00:00:00'
+              - column:
+                  name: updated_at
+                  valueDate: '2024-01-01T00:00:00'
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  value: '650e8400-e29b-41d4-a716-446655440001'
+              - column:
+                  name: name
+                  value: 'Samsung Galaxy S24 Ultra'
+              - column:
+                  name: description
+                  value: 'Flagship smartphone with advanced camera system'
+              - column:
+                  name: price
+                  value: 1299.99
+              - column:
+                  name: producer_id
+                  value: '550e8400-e29b-41d4-a716-446655440001'
+              - column:
+                  name: created_at
+                  valueDate: '2024-01-15T10:00:00'
+              - column:
+                  name: updated_at
+                  valueDate: '2024-01-15T10:00:00'
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  value: '650e8400-e29b-41d4-a716-446655440002'
+              - column:
+                  name: name
+                  value: 'iPhone 15 Pro'
+              - column:
+                  name: description
+                  value: 'Pro smartphone with titanium design'
+              - column:
+                  name: price
+                  value: 1199.99
+              - column:
+                  name: producer_id
+                  value: '550e8400-e29b-41d4-a716-446655440002'
+              - column:
+                  name: created_at
+                  valueDate: '2024-01-15T11:00:00'
+              - column:
+                  name: updated_at
+                  valueDate: '2024-01-15T11:00:00'
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  value: '650e8400-e29b-41d4-a716-446655440003'
+              - column:
+                  name: name
+                  value: 'Sony WH-1000XM5'
+              - column:
+                  name: description
+                  value: 'Premium noise-canceling wireless headphones'
+              - column:
+                  name: price
+                  value: 399.99
+              - column:
+                  name: producer_id
+                  value: '550e8400-e29b-41d4-a716-446655440003'
+              - column:
+                  name: created_at
+                  valueDate: '2024-01-16T09:00:00'
+              - column:
+                  name: updated_at
+                  valueDate: '2024-01-16T09:00:00'
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  value: '650e8400-e29b-41d4-a716-446655440004'
+              - column:
+                  name: name
+                  value: 'LG OLED C3 65"'
+              - column:
+                  name: description
+                  value: '4K OLED Smart TV with AI processing'
+              - column:
+                  name: price
+                  value: 1899.99
+              - column:
+                  name: producer_id
+                  value: '550e8400-e29b-41d4-a716-446655440004'
+              - column:
+                  name: created_at
+                  valueDate: '2024-01-17T14:30:00'
+              - column:
+                  name: updated_at
+                  valueDate: '2024-01-17T14:30:00'
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  value: '650e8400-e29b-41d4-a716-446655440005'
+              - column:
+                  name: name
+                  value: 'Dell XPS 15'
+              - column:
+                  name: description
+                  value: 'High-performance laptop for professionals'
+              - column:
+                  name: price
+                  value: 1799.99
+              - column:
+                  name: producer_id
+                  value: '550e8400-e29b-41d4-a716-446655440005'
+              - column:
+                  name: created_at
+                  valueDate: '2024-01-18T16:45:00'
+              - column:
+                  name: updated_at
+                  valueDate: '2024-01-18T16:45:00'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440001'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440001'
+              - column:
+                  name: attribute_key
+                  value: 'color'
+              - column:
+                  name: attribute_value
+                  value: 'Titanium Gray'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440002'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440001'
+              - column:
+                  name: attribute_key
+                  value: 'storage'
+              - column:
+                  name: attribute_value
+                  value: '512GB'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440003'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440001'
+              - column:
+                  name: attribute_key
+                  value: 'screen_size'
+              - column:
+                  name: attribute_value
+                  value: '6.8 inches'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440004'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440001'
+              - column:
+                  name: attribute_key
+                  value: 'ram'
+              - column:
+                  name: attribute_value
+                  value: '12GB'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440005'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440002'
+              - column:
+                  name: attribute_key
+                  value: 'color'
+              - column:
+                  name: attribute_value
+                  value: 'Space Black'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440006'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440002'
+              - column:
+                  name: attribute_key
+                  value: 'storage'
+              - column:
+                  name: attribute_value
+                  value: '256GB'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440007'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440002'
+              - column:
+                  name: attribute_key
+                  value: 'chip'
+              - column:
+                  name: attribute_value
+                  value: 'A17 Pro'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440008'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440003'
+              - column:
+                  name: attribute_key
+                  value: 'color'
+              - column:
+                  name: attribute_value
+                  value: 'Black'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440009'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440003'
+              - column:
+                  name: attribute_key
+                  value: 'battery_life'
+              - column:
+                  name: attribute_value
+                  value: '30 hours'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440010'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440003'
+              - column:
+                  name: attribute_key
+                  value: 'noise_cancelling'
+              - column:
+                  name: attribute_value
+                  value: 'Yes'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440011'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440003'
+              - column:
+                  name: attribute_key
+                  value: 'bluetooth_version'
+              - column:
+                  name: attribute_value
+                  value: '5.2'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440012'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440003'
+              - column:
+                  name: attribute_key
+                  value: 'weight'
+              - column:
+                  name: attribute_value
+                  value: '250g'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440013'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440004'
+              - column:
+                  name: attribute_key
+                  value: 'screen_size'
+              - column:
+                  name: attribute_value
+                  value: '65 inches'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440014'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440004'
+              - column:
+                  name: attribute_key
+                  value: 'resolution'
+              - column:
+                  name: attribute_value
+                  value: '3840x2160'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440015'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440004'
+              - column:
+                  name: attribute_key
+                  value: 'panel_type'
+              - column:
+                  name: attribute_value
+                  value: 'OLED'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440016'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440004'
+              - column:
+                  name: attribute_key
+                  value: 'refresh_rate'
+              - column:
+                  name: attribute_value
+                  value: '120Hz'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440017'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440004'
+              - column:
+                  name: attribute_key
+                  value: 'hdr'
+              - column:
+                  name: attribute_value
+                  value: 'Dolby Vision, HDR10'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440018'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440004'
+              - column:
+                  name: attribute_key
+                  value: 'smart_platform'
+              - column:
+                  name: attribute_value
+                  value: 'webOS'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440019'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440004'
+              - column:
+                  name: attribute_key
+                  value: 'hdmi_ports'
+              - column:
+                  name: attribute_value
+                  value: '4'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440020'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440004'
+              - column:
+                  name: attribute_key
+                  value: 'weight'
+              - column:
+                  name: attribute_value
+                  value: '18.9 kg'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440021'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440004'
+              - column:
+                  name: attribute_key
+                  value: 'energy_rating'
+              - column:
+                  name: attribute_value
+                  value: 'A'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440022'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440005'
+              - column:
+                  name: attribute_key
+                  value: 'processor'
+              - column:
+                  name: attribute_value
+                  value: 'Intel Core i7-13700H'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440023'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440005'
+              - column:
+                  name: attribute_key
+                  value: 'ram'
+              - column:
+                  name: attribute_value
+                  value: '32GB DDR5'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440024'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440005'
+              - column:
+                  name: attribute_key
+                  value: 'storage'
+              - column:
+                  name: attribute_value
+                  value: '1TB NVMe SSD'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440025'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440005'
+              - column:
+                  name: attribute_key
+                  value: 'graphics'
+              - column:
+                  name: attribute_value
+                  value: 'NVIDIA GeForce RTX 4050'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440026'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440005'
+              - column:
+                  name: attribute_key
+                  value: 'screen_size'
+              - column:
+                  name: attribute_value
+                  value: '15.6 inches'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440027'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440005'
+              - column:
+                  name: attribute_key
+                  value: 'resolution'
+              - column:
+                  name: attribute_value
+                  value: '3456x2160'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440028'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440005'
+              - column:
+                  name: attribute_key
+                  value: 'battery'
+              - column:
+                  name: attribute_value
+                  value: '86Whr'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440029'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440005'
+              - column:
+                  name: attribute_key
+                  value: 'weight'
+              - column:
+                  name: attribute_value
+                  value: '1.86 kg'
+
+        - insert:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  value: '750e8400-e29b-41d4-a716-446655440030'
+              - column:
+                  name: product_id
+                  value: '650e8400-e29b-41d4-a716-446655440005'
+              - column:
+                  name: attribute_key
+                  value: 'operating_system'
+              - column:
+                  name: attribute_value
+                  value: 'Windows 11 Pro'

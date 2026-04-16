@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-create-product-attributes-table
+      author: system
+      changes:
+        - createTable:
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: product_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+              - column:
+                  name: attribute_key
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: attribute_value
+                  type: VARCHAR(1000)
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: product_attributes
+            baseColumnNames: product_id
+            constraintName: fk_product_attributes_product
+            referencedTableName: products
+            referencedColumnNames: id
+            onDelete: CASCADE
+        - createIndex:
+            indexName: idx_product_attributes_product_id
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: product_id
+        - createIndex:
+            indexName: idx_product_attributes_key
+            tableName: product_attributes
+            columns:
+              - column:
+                  name: attribute_key
